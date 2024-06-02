@@ -32,6 +32,15 @@ func main() {
 		commands.Commit(os.Args[3])
 	case "log":
 		commands.Log()
+	case "clone":
+		repoURL := os.Args[2]
+		var destinationPath string
+		if len(os.Args) > 3 {
+			destinationPath = os.Args[3]
+		} else {
+			destinationPath, _ = os.Getwd()
+		}
+		commands.Clone(repoURL, destinationPath)
 	default:
 		fmt.Println("Unknown command:", command)
 	}
